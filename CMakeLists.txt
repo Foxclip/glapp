@@ -4,6 +4,7 @@ project(glapp LANGUAGES CXX)
 set (CMAKE_CXX_STANDARD 20)
 
 add_subdirectory(glvis)
+add_subdirectory(glapp_tests)
 
 add_library(${PROJECT_NAME})
 set(INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
@@ -14,4 +15,6 @@ target_sources(${PROJECT_NAME} PRIVATE
 )
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${INCLUDE_DIR}
+    ${PROJECT_SOURCE_DIR}/glvis/include
 )
+target_link_libraries(${PROJECT_NAME} PRIVATE glvis)

@@ -8,7 +8,9 @@
 #include "glvis/render_texture.h"
 #include "glvis/camera.h"
 
-namespace glvis {
+using namespace glvis;
+
+namespace glapp {
 
 class App {
 

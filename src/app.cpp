@@ -1,10 +1,10 @@
 #include <iostream>
+#include "glapp/app.h"
 #include "glvis/utils.h"
-#include "glvis/app.h"
 #include "glvis/shader.h"
 #include "glvis/glvis_common.h"
 
-namespace glvis {
+namespace glapp {
 
 App::App(int width, int height) {
     START_TRY
