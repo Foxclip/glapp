@@ -1,0 +1,3 @@
+[submodule "glvis"]
+	path = glvis
+	url = https://github.com/Foxclip/glvis.git
