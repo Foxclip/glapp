@@ -16,4 +16,4 @@ target_sources(${PROJECT_NAME} PRIVATE
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${INCLUDE_DIR}
 )
-target_link_libraries(${PROJECT_NAME} PRIVATE glvis)
+target_link_libraries(${PROJECT_NAME} PUBLIC glvis)
