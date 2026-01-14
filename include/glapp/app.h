@@ -6,6 +6,7 @@
 #include "glvis/vertex_array.h"
 #include "glvis/texture.h"
 #include "glvis/render_texture.h"
+#include "glvis/window.h"
 #include "glvis/camera.h"
 
 using namespace glvis;
@@ -27,9 +28,7 @@ public:
     VertexArray* addVertexArray(PrimitiveType type, std::size_t vertexCount = 0);
 
 private:
-    GLFWwindow* window = nullptr;
-    int currentWindowWidth = 0;
-    int currentWindowHeight = 0;
+    Window window;
     Camera camera;
     int mouseX = 0;
     int mouseY = 0;
@@ -38,26 +37,16 @@ private:
     bool firstMouse = true;
     bool leftMousePressed = false;
     bool rightMousePressed = false;
-    std::unique_ptr<Rectangle> screenRectangle = nullptr;
     std::vector<std::unique_ptr<Drawable>> drawables;
-    std::unique_ptr<Shader> defaultShaderUptr = nullptr;
-    std::unique_ptr<Shader> screenShaderUptr = nullptr;
-    std::unique_ptr<RenderTexture> screenTextureUptr = nullptr;
     std::map<std::string, std::unique_ptr<Texture>> textures;
 
-    GLFWwindow* init(int width, int height);
     void mainLoop();
-    glm::mat4 getViewMatrix();
-    glm::mat4 getInvViewMatrix();
-    glm::vec2 worldToScreen(float x, float y);
-    glm::vec2 screenToWorld(int x, int y);
     static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
     static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
     static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
     static void scroll_callback(GLFWwindow* window, double x, double y);
     static void glad_pre_callback(const char* name, void* funcptr, int len_args, ...);
     static void glad_post_callback(const char* name, void* funcptr, int len_args, ...);
-    void processWindowSize(int width, int height);
     void processMouse(double xpos, double ypos);
     void processMousePress(int button, int action, int mods);
     void processMouseScroll(double x, double y);
