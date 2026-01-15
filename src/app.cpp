@@ -79,28 +79,6 @@ void App::mainLoop() {
     }
 }
 
-void App::mouse_callback(GLFWwindow *window, double xpos, double ypos) {
-    if (App* app = static_cast<App*>(glfwGetWindowUserPointer(window))) {
-        app->processMouse(xpos, ypos);
-    }
-}
-
-void App::mouse_button_callback(GLFWwindow *window, int button, int action, int mods) {
-    if (App* app = static_cast<App*>(glfwGetWindowUserPointer(window))) {
-        app->processMousePress(button, action, mods);
-    }
-}
-
-void App::scroll_callback(GLFWwindow *window, double x, double y) {
-    if (App* app = static_cast<App*>(glfwGetWindowUserPointer(window))) {
-        app->processMouseScroll(x, y);
-    }
-}
-
-void App::glad_pre_callback(const char* name, void *funcptr, int len_args, ...) { }
-
-void App::glad_post_callback(const char* name, void* funcptr, int len_args, ...) { }
-
 void App::processMouse(double xpos, double ypos) {
     if (firstMouse) {
         mouseX = (int)xpos;
