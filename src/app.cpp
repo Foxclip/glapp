@@ -9,6 +9,15 @@ namespace glapp {
 App::App(int width, int height) {
     START_TRY
     window.create(width, height);
+    window.setMouseCallback([this](double xpos, double ypos) {
+        processMouse(xpos, ypos);
+    });
+    window.setMouseButtonCallback([this](int button, int action, int mods) {
+        processMousePress(button, action, mods);
+    });
+    window.setScrollCallback([this](double x, double y) {
+        processMouseScroll(x, y);
+    });
     END_TRY
 }
 
@@ -17,9 +26,9 @@ App::~App() {
     textures.clear();
 }
 
-    Camera& App::getCamera() {
-        return camera;
-    }
+Camera& App::getCamera() {
+    return camera;
+}
 
 void App::start() {
     START_TRY
@@ -67,14 +76,11 @@ VertexArray* App::addVertexArray(PrimitiveType type, std::size_t vertexCount) {
 }
 
 void App::mainLoop() {
-
     while (window.isOpen()) {
         window.clear();
-        
         for (auto& drawable : drawables) {
             window.draw(*drawable);
         }
-
         window.display();
     }
 }
