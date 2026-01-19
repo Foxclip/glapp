@@ -77,7 +77,7 @@ VertexArray* App::addVertexArray(PrimitiveType type, std::size_t vertexCount) {
 
 void App::mainLoop() {
     while (window.isOpen()) {
-        window.clear();
+        window.clear(Color::Black);
         for (auto& drawable : drawables) {
             window.draw(*drawable);
         }
