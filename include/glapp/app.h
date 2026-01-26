@@ -7,7 +7,7 @@
 #include "glvis/texture.h"
 #include "glvis/render_texture.h"
 #include "glvis/window.h"
-#include "glvis/camera.h"
+#include "glvis/view.h"
 
 using namespace glvis;
 
@@ -18,7 +18,7 @@ class App {
 public:
     App(int width, int height);
     ~App();
-    Camera& getCamera();
+    View& getView();
     void start();
     Texture* addTexture(const std::filesystem::path& path);
     void removeTexture(Texture* texture);
@@ -29,7 +29,7 @@ public:
 
 private:
     Window window;
-    Camera camera;
+    View view;
     int mouseX = 0;
     int mouseY = 0;
     float mouseXWorld = 0.0f;

@@ -26,8 +26,8 @@ App::~App() {
     textures.clear();
 }
 
-Camera& App::getCamera() {
-    return camera;
+View& App::getView() {
+    return view;
 }
 
 void App::start() {
@@ -96,8 +96,8 @@ void App::processMouse(double xpos, double ypos) {
     float xoffset = (float)xpos - mouseX;
     float yoffset = (float)ypos - mouseY;
     if (rightMousePressed) {
-        glm::vec2 offset = glm::vec2(xoffset / camera.getZoom(), yoffset / camera.getZoom());
-        camera.setPosition(camera.getPosition() - offset);
+        Vector2f offset(xoffset / view.getZoom(), yoffset / view.getZoom());
+        view.setPosition(view.getPosition() - offset);
     }
     mouseX = (int)xpos;
     mouseY = (int)ypos;
@@ -120,14 +120,14 @@ void App::processMousePress(int button, int action, int mods) {
 }
 
 void App::processMouseScroll(double x, double y) {
-    float zoomFactor = powf(CAMERA_ZOOM_FACTOR, (float)y);
-    camera.setZoom(camera.getZoom() * zoomFactor);
-    glm::vec2 mouseWorld = glm::vec2(mouseXWorld, mouseYWorld);
-    camera.setPosition((camera.getPosition() - mouseWorld) / zoomFactor + mouseWorld);
+    float zoomFactor = powf(VIEW_ZOOM_FACTOR, (float)y);
+    view.setZoom(view.getZoom() * zoomFactor);
+    Vector2f mouseWorld(mouseXWorld, mouseYWorld);
+    view.setPosition((view.getPosition() - mouseWorld) / zoomFactor + mouseWorld);
 }
 
 void App::processMouseLeftPress(int x, int y) {
-    glm::vec2 worldPos = window.screenToWorld(x, y);
+    Vector2f worldPos = window.screenToWorld(x, y);
     std::cout << std::format("Screen: ({}, {}) World: ({}, {})", x, y, worldPos.x, worldPos.y) << std::endl;
 }
 
